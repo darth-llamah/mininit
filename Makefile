@@ -1,8 +1,5 @@
-
-CC = mipsel-linux-gcc
-CFLAGS = -Wall -O2 -mips32 -mtune=mips32 -fomit-frame-pointer
 LDFLAGS = -s -static
-
+CFLAGS = -Wall -O2 -marm -mtune=arm1176jzf-s
 TARGET=mininit
 
 OBJS=loop.o init.o
@@ -10,7 +7,7 @@ OBJS=loop.o init.o
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
+	$(CROSS_COMPILE)gcc $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
 
 clean:
 	-rm -f $(OBJS) $(TARGET)
